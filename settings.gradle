@@ -1,1 +1,1 @@
-include ':app', ':okgallery'
+include ':demo', ':okgallery'

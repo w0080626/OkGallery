@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Toolbar的颜色 -->
+    <color name="colorPrimary">#F6F6F8</color>
+    <!-- 文字的颜色 -->
+    <color name="textColorPrimary">#21212b</color>
+    <!-- 图片选择器库里所有Activity界面的背景色 -->
+    <color name="windowBackground">#f0f0f2</color>
+
+    <!-- 图片处于选中状态时的遮罩层颜色 -->
+    <color name="photo_selected_mask">#4D000000</color>
+
+    <!-- 右上角确认按钮不可用时的颜色 -->
+    <color name="btn_confirm_disabled">#8005a4ff</color>
+    <!-- 右上角确认按钮可用时的颜色 -->
+    <color name="btn_confirm_enabled">#05a4ff</color>
+    <!-- 右上角确认按钮按下时的颜色 -->
+    <color name="btn_confirm_pressed">#0d8ed8</color>
+
+    <color name="loading_progress_startColor">@android:color/white</color>
+    <color name="loading_progress_centerColor">#05a4ff</color>
+    <color name="loading_progress_endColor">#0d8ed8</color>
+</resources>
