@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">OkGallery</string>
+    <string name="OkGallery_confirm">完成</string>
+    <string name="OkGallery_choose">选择</string>
+    <string name="OkGallery_preview">预览</string>
+    <string name="OkGallery_all_image">所有图片</string>
+    <string name="OkGallery_take_photo">拍摄照片</string>
+    <string name="OkGallery_toast_checked_max">最多只能选择 %1$s 张图片</string>
+
 </resources>

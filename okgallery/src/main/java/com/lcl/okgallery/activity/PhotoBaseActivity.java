@@ -1,4 +1,4 @@
-package com.lcl.okgallery.ui;
+package com.lcl.okgallery.activity;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.lcl.okgallery.R;
  * Date:    2016/11/18
  * Description:
  */
-public abstract class PhotoBaseActivity extends AppCompatActivity  {
+public abstract class PhotoBaseActivity extends AppCompatActivity implements View.OnClickListener {
     protected Toolbar mToolbar;
 
     @Override
@@ -96,6 +96,9 @@ public abstract class PhotoBaseActivity extends AppCompatActivity  {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v) {
     }
 
     @Override

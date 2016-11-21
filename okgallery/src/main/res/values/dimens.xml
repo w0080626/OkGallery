@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="OkGallery_bar_sise">50dp</dimen>
+
+    <dimen name="OkGallery_radius_size">4dp</dimen>
+
+    <dimen name="OkGallery_textSize_level1">14sp</dimen>
+    <dimen name="OkGallery_textSize_level2">16sp</dimen>
+
+    <dimen name="OkGallery_space_level1">14dp</dimen>
+    <dimen name="OkGallery_photo_divider">2dp</dimen>
+</resources>
