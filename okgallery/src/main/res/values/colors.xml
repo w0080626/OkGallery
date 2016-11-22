@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Toolbar的颜色 -->
-    <color name="colorPrimary">#F6F6F8</color>
+    <color name="OkGalleryColorPrimary">#F6F6F8</color>
     <!-- 文字的颜色 -->
-    <color name="textColorPrimary">#21212b</color>
+    <color name="OkGalleryTextColorPrimary">#21212b</color>
     <!-- 图片选择器库里所有Activity界面的背景色 -->
-    <color name="windowBackground">#f0f0f2</color>
+    <color name="OkGalleryWindowBackground">#f0f0f2</color>
 
     <!-- 图片处于选中状态时的遮罩层颜色 -->
     <color name="photo_selected_mask">#4D000000</color>

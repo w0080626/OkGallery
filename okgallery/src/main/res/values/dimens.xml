@@ -4,8 +4,13 @@
 
     <dimen name="OkGallery_radius_size">4dp</dimen>
 
-    <dimen name="OkGallery_textSize_level1">14sp</dimen>
-    <dimen name="OkGallery_textSize_level2">16sp</dimen>
+    <dimen name="OkGallery_textSize_16">16sp</dimen>
+    <dimen name="OkGallery_textSize_14">14sp</dimen>
+    <dimen name="OkGallery_textSize_12">12sp</dimen>
+
+    <dimen name="OkGallery_size_4">4dp</dimen>
+    <dimen name="OkGallery_size_8">8dp</dimen>
+    <dimen name="OkGallery_size_12">12dp</dimen>
 
     <dimen name="OkGallery_space_level1">14dp</dimen>
     <dimen name="OkGallery_photo_divider">2dp</dimen>

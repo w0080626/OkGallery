@@ -1,4 +1,4 @@
-package com.lcl.okgallery.sample;
+package com.lcl.okgallery.demo;
 
 import android.app.Application;
 

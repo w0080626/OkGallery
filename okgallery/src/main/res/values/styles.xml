@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="APPTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:windowBackground">@color/windowBackground</item>
+    <style name="OkGalleryAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/OkGalleryColorPrimary</item>
+        <item name="android:textColorPrimary">@color/OkGalleryTextColorPrimary</item>
+        <item name="android:windowBackground">@color/OkGalleryWindowBackground</item>
     </style>
 </resources>

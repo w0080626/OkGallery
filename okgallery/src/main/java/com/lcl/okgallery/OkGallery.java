@@ -40,7 +40,7 @@ public class OkGallery {
     private int selectLimit = 9;         //最大选择图片数量
     private boolean crop = true;         //裁剪
     private boolean showCamera = true;   //显示相机
-    private boolean PauseOnScroll = true; //滑动暂停加载
+    private boolean PauseOnScroll = false; //滑动暂停加载
 
     private boolean isSaveRectangle = false;  //裁剪后的图片是否是矩形，否者跟随裁剪框的形状
     private int outPutX = 800;           //裁剪保存宽度
@@ -53,7 +53,7 @@ public class OkGallery {
     private File takeImageFile;
     public Bitmap cropBitmap;
 
-    private ArrayList<String> mSelectedImages = new ArrayList<>();   //选中的图片集合
+    private List<String> mSelectedImages = new ArrayList<>();   //选中的图片集合
     private List<ImageFolder> mImageFolders;      //所有的图片文件夹
     private int mCurrentImageFolderPosition = 0;  //当前选中的文件夹位置 0表示所有图片
     private List<OnImageSelectedListener> mImageSelectedListeners;          // 图片选中的监听回调
@@ -194,7 +194,7 @@ public class OkGallery {
         mCurrentImageFolderPosition = mCurrentSelectedImageSetPosition;
     }
 
-    public ArrayList<String> getCurrentImageFolderItems() {
+    public List<String> getCurrentImageFolderItems() {
         return mImageFolders.get(mCurrentImageFolderPosition).getImages();
     }
 
@@ -209,8 +209,14 @@ public class OkGallery {
         return mSelectedImages.size();
     }
 
-    public ArrayList<String> getSelectedImages() {
+    public List<String> getSelectedImages() {
         return mSelectedImages;
+    }
+
+    public void setSelectedImages(List<String> list) {
+        if (list != null) {
+            mSelectedImages = list;
+        }
     }
 
     public void clearSelectedImages() {

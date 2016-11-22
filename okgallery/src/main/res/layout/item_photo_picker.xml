@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <com.lcl.okgallery.view.SquareImageView
+        android:id="@+id/iv_item_photo_picker_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/iv_item_photo_picker_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:paddingBottom="@dimen/OkGallery_size_8"
+        android:paddingLeft="@dimen/OkGallery_size_8"
+        android:paddingRight="@dimen/OkGallery_size_4"
+        android:paddingTop="@dimen/OkGallery_size_4"
+        android:src="@drawable/ic_normal" />
+</RelativeLayout>
