@@ -1,13 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/openGallery_btn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="Open Gallery" />
-</RelativeLayout>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#bf2f2f"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Select Mode"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_single_select"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Single Select" />
+
+                <RadioButton
+                    android:id="@+id/rb_muti_select"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Multi Select" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#bf2f2f"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="selectLimit"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_select_limit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="9"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/sb_select_limit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:max="10"
+                android:progress="9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6476ed"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_show_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="显示相机(Show Camera)" />
+
+            <CheckBox
+                android:id="@+id/cb_crop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="裁剪(Crop)"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_pause_on_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6476ed"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="滑动暂停加载图片(Pause On Scroll) 当设置滑动暂停的时候暂时不要设置显示相机，会出现缓存错乱问题，待解决。" />
+
+        <CheckBox
+            android:id="@+id/cb_isSaveRectangle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6476ed"
+            android:text="是否按矩形区域保存裁剪图片"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6476ed"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/rb_crop_square"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="矩形"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_crop_width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Width"
+                android:inputType="number"
+                android:minWidth="50dp"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_crop_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Height"
+                android:inputType="number"
+                android:minWidth="50dp"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/rb_crop_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="圆形"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_crop_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Radius"
+                android:inputType="number"
+                android:minWidth="50dp"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6476ed"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图片保存宽:"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/et_outputx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Width"
+                android:inputType="number"
+                android:minWidth="50dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图片保存高:"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/et_outputy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Height"
+                android:inputType="number"
+                android:minWidth="50dp"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_open_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Gallery"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>

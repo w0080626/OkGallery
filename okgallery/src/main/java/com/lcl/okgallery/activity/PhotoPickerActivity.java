@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,8 +48,9 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
     private ImageView iv_arrow; //箭头
     private ImageView iv_back; //返回
     private RelativeLayout topBar; //toolbar
+    private FrameLayout bottomBar;
 
-    private OkGallery okGallery = OkGallery.getInstance();
+    private OkGallery okGallery;
 
     private PhotoPickerAdapter mAdapter;
     /**
@@ -90,6 +91,8 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
     @Override
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_picker);
+        okGallery = OkGallery.getInstance();
+
         recycler = $(R.id.recycler);
         btn_confirm = $(R.id.btn_confirm);
         tv_preview = $(R.id.tv_preview);
@@ -97,6 +100,7 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
         iv_arrow = $(R.id.iv_arrow);
         iv_back = $(R.id.iv_back);
         topBar = $(R.id.topBar);
+        bottomBar = $(R.id.bottomBar);
     }
 
     @Override
@@ -107,7 +111,7 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
         iv_arrow.setOnClickListener(this);
         iv_back.setOnClickListener(this);
 
-        mAdapter = new PhotoPickerAdapter(this, recycler);
+        mAdapter = new PhotoPickerAdapter(this, recycler, okGallery.isMultiMode());
         mAdapter.setOnItemChildClickListener(this);
     }
 
@@ -132,6 +136,7 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
         if (mCurrentImageFolder != null) {
             tv_title.setText(mCurrentImageFolder.name);
         }
+        bottomBar.setVisibility(okGallery.isMultiMode() ? View.VISIBLE : View.GONE);
         updateConfirmBtnStatus();
     }
 
@@ -186,8 +191,12 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
         if (view.getId() == R.id.iv_item_photo_picker_flag) {
             handleClickSelectFlagIv(position);
         } else if (view.getId() == R.id.iv_item_photo_picker_photo) {
-//            handleClickPreviewIv(position);
-            showToast("进入预览");
+            if (okGallery.isMultiMode()) {
+                showToast("进入预览");
+            } else {
+                showToast("返回图片 " + mCurrentImageFolder.getImages().get(position));
+
+            }
         }
     }
 
@@ -198,38 +207,16 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
      */
     private void handleClickSelectFlagIv(int position) {
         String currentImage = mAdapter.getItem(position);
-        if (okGallery.getSelectLimit() == 1) {
-            // 单选
-
-            if (mAdapter.getSelectedCount() > 0) {
-                String selectedImage = mAdapter.getSelectedImages().remove(0);
-                if (TextUtils.equals(selectedImage, currentImage)) {
-                    mAdapter.notifyItemChanged(position);
-                } else {
-                    int preSelectedImagePosition = mAdapter.getData().indexOf(selectedImage);
-                    mAdapter.notifyItemChanged(preSelectedImagePosition);
-                    mAdapter.getSelectedImages().add(currentImage);
-                    mAdapter.notifyItemChanged(position);
-                }
+        if (!mAdapter.getSelectedImages().contains(currentImage) && mAdapter.getSelectedCount() == okGallery.getSelectLimit()) {
+            toastMaxCountTip();
+        } else {
+            if (mAdapter.getSelectedImages().contains(currentImage)) {
+                mAdapter.getSelectedImages().remove(currentImage);
             } else {
                 mAdapter.getSelectedImages().add(currentImage);
-                mAdapter.notifyItemChanged(position);
             }
+            mAdapter.notifyItemChanged(position);
             updateConfirmBtnStatus();
-        } else {
-            // 多选
-            if (!mAdapter.getSelectedImages().contains(currentImage) && mAdapter.getSelectedCount() == okGallery.getSelectLimit()) {
-                toastMaxCountTip();
-            } else {
-                if (mAdapter.getSelectedImages().contains(currentImage)) {
-                    mAdapter.getSelectedImages().remove(currentImage);
-                } else {
-                    mAdapter.getSelectedImages().add(currentImage);
-                }
-                mAdapter.notifyItemChanged(position);
-
-                updateConfirmBtnStatus();
-            }
         }
     }
 
@@ -276,6 +263,7 @@ public class PhotoPickerActivity extends PhotoBaseActivity implements OkGalleryA
 
         okGallery.clearSelectedImages();
         topBar = null;
+        bottomBar = null;
         tv_title = null;
         iv_back = null;
         iv_arrow = null;

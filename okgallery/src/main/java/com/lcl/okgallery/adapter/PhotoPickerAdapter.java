@@ -28,12 +28,14 @@ public class PhotoPickerAdapter extends BGARecyclerViewAdapter<String> {
     private int mImageHeight;
     private boolean mTakePhotoEnabled;
     private Activity mActivity;
+    private boolean mIsMultiMode;
 
-    public PhotoPickerAdapter(Activity activity, RecyclerView recyclerView) {
+    public PhotoPickerAdapter(Activity activity, RecyclerView recyclerView,boolean isMultiMode) {
         super(recyclerView, R.layout.item_photo_picker);
         mImageWidth = OkGalleryUtil.getScreenWidth(recyclerView.getContext()) / 6;
         mImageHeight = mImageWidth;
         mActivity = activity;
+        mIsMultiMode = isMultiMode;
     }
 
     @Override
@@ -56,14 +58,17 @@ public class PhotoPickerAdapter extends BGARecyclerViewAdapter<String> {
             helper.getImageView(R.id.iv_item_photo_picker_photo).setScaleType(ImageView.ScaleType.CENTER_CROP);
             OkGalleryImage.displayImage(mActivity, helper.getImageView(R.id.iv_item_photo_picker_photo), model, R.drawable.ic_default_img, R.drawable.ic_default_img, mImageWidth, mImageHeight, null);
 
-            helper.setVisibility(R.id.iv_item_photo_picker_flag, View.VISIBLE);
-
-            if (mSelectedImages.contains(model)) {
-                helper.setImageResource(R.id.iv_item_photo_picker_flag, R.drawable.ic_checked);
-                helper.getImageView(R.id.iv_item_photo_picker_photo).setColorFilter(helper.getConvertView().getResources().getColor(R.color.photo_selected_mask));
-            } else {
-                helper.setImageResource(R.id.iv_item_photo_picker_flag, R.drawable.ic_normal);
-                helper.getImageView(R.id.iv_item_photo_picker_photo).setColorFilter(null);
+            if (mIsMultiMode){
+                helper.setVisibility(R.id.iv_item_photo_picker_flag, View.VISIBLE);
+                if (mSelectedImages.contains(model)) {
+                    helper.setImageResource(R.id.iv_item_photo_picker_flag, R.drawable.ic_checked);
+                    helper.getImageView(R.id.iv_item_photo_picker_photo).setColorFilter(helper.getConvertView().getResources().getColor(R.color.photo_selected_mask));
+                } else {
+                    helper.setImageResource(R.id.iv_item_photo_picker_flag, R.drawable.ic_normal);
+                    helper.getImageView(R.id.iv_item_photo_picker_photo).setColorFilter(null);
+                }
+            }else{
+                helper.setVisibility(R.id.iv_item_photo_picker_flag, View.GONE);
             }
         }
     }
